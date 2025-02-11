@@ -63,6 +63,32 @@ def detalhe_produto(request, pk):
     elif request.method == 'DELETE':
         produto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
 
 #Pedido
+@api_view(['GET', 'POST'])
+def listar_pedidos(request):
+    if request.method == 'GET':
+        pedidos = Pedido.objects.all()
+        serializer = PedidoSerializer(pedidos, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = PedidoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'DELETE'])
+def detalhe_pedido(request, pk):
+    pedido = get_object_or_404(Pedido, pk=pk)
+    
+    if request.method == 'GET':
+        serializer = PedidoSerializer(pedido)
+        return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        pedido.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

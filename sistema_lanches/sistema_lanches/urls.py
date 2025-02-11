@@ -21,8 +21,12 @@ from api_lanches import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', views.listar_clientes, name='lista-de-clientes'),
-    path('clientes/<int:pk>', views.detalhe_cliente, name='detalhes-do-cliente'),
+    path('clientes/<int:pk>/', views.detalhe_cliente, name='detalhes-do-cliente'),
+
     path('produtos/', views.listar_produtos, name='lista-de-produtos'),
-    path('produtos/<int:pk>', views.detalhe_produto, name='detalhes-do-produto'),
+    path('produtos/<int:pk>/', views.detalhe_produto, name='detalhes-do-produto'),
+
+    path('pedidos/', views.listar_pedidos, name='lista-de-pedidos'),
+    path('pedidos/<int:pk>/', views.detalhe_pedido, name='detalhes-do-pedido'),
 
 ]
