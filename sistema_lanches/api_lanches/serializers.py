@@ -12,6 +12,11 @@ class ProdutoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PedidoSerializer(serializers.ModelSerializer):
+    total = serializers.SerializerMethodField()
+
     class Meta:
         model = Pedido
-        fields = '__all__'
+        fields = ['cliente', 'produtos', 'tipo_entrega', 'total']
+
+    def get_total(self, obj):
+        return obj.calcular_total()
