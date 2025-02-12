@@ -35,7 +35,14 @@ def detalhe_cliente(request, pk):
         cliente.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET'])
+def historico_pedidos(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
 
+    pedidos = cliente.pedidos.all()
+    serializer = PedidoSerializer(pedidos, many=True)
+    return Response(serializer.data)
+    
 
 #Produto
 @api_view(['GET', 'POST'])

@@ -18,7 +18,7 @@ class Produto(models.Model):
         #return f"Nome: {self.nome} \nPreço: {self.preco}"
 
 class Pedido(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, related_name='pedidos', on_delete=models.CASCADE)
     produtos = models.ManyToManyField(Produto)
     tipo_entrega = models.CharField(max_length=255)
     #total = models.DecimalField(default=0, max_digits=10, decimal_places=2)

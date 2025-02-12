@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('clientes/', views.listar_clientes, name='lista-de-clientes'),
     path('clientes/<int:pk>/', views.detalhe_cliente, name='detalhes-do-cliente'),
+    path('clientes/<int:pk>/historico/', views.historico_pedidos, name='historico-de-pedidos'),
 
     path('produtos/', views.listar_produtos, name='lista-de-produtos'),
     path('produtos/<int:pk>/', views.detalhe_produto, name='detalhes-do-produto'),
