@@ -1,2 +1,2 @@
 # lanches-api
-API de venda de lanches com Django
+API de venda de lanches com Django REST Framwork.
